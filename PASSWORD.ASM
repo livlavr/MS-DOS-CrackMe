@@ -24,6 +24,8 @@ GoodBoy:
 
 	jmp Check
 
+hash	dw 0ea2h
+
 Exit:
 	mov ax, 4c00h
 	int 21h
@@ -32,8 +34,11 @@ Check:
 	call CheckPasswords
 	pushf
 
+	call JokeHash
 	xor ax, ax
 	mov ah, 09h
+	cmp bx, [hash]
+	jne DontFoolMe
 
 	popf
 	je CorrectInput
@@ -46,6 +51,9 @@ WrongInput:
 CorrectInput:
 	cmp am_i_fooled, 1h
 	je DontFoolMe
+	;call JokeHash
+	;cmp bx, [hash]
+	;jne DontFoolMe
 
 	mov byte ptr dx, offset good_password
 	int 21h
@@ -71,13 +79,31 @@ CheckPasswords	proc
 	ret
 CheckPasswords	endp
 ;------------------------------------------------------------------------|
+JokeHash	proc
+	cld
+	mov ax, offset wrong_password
+	mov cx, offset password
+	sub cx, ax
+	xor ax, ax	
+	xor bx, bx
+
+	mov si, offset wrong_password
+
+@@Loop:	xor ax, ax
+	lodsb
+	add bx, ax
+	loop @@Loop
+
+	ret
+JokeHash	endp
+;------------------------------------------------------------------------|
 pas_check0	dw 01505h
-user_password	db 00050h dup(0h)
+user_password	db 00010h dup(0h)
 pas_check1	dw 01505h
-am_i_fooled	db 0h
-dont_fool_me	db "If you'll try to fool me again, i'll slap your little ass!$"
 wrong_password	db "Access Denied!$"
 good_password	db "Correct Password, Welcome!$"
 password	db "PASSME"
+am_i_fooled	db 0h
+dont_fool_me	db "If you'll try to fool me again, i'll slap your little ass!$"
 ;------------------------------------------------------------------------|
 end	Main
