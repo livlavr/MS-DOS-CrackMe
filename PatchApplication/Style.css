@@ -10,6 +10,8 @@ button {
     font-size: 16px;
     border-radius: 5px;
     padding: 10px 20px;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 entry {
@@ -21,6 +23,11 @@ entry {
 button:hover {
     background: #770d0d;
     border: #111;
+}
+
+button:active {
+    transition: all 500ms ease;
+    transform:scale(0.8);
 }
 
 label {
