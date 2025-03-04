@@ -79,7 +79,7 @@ static GtkWidget* createGif(GtkWidget* overlay) {
 static void loadCSS() {
     GtkCssProvider* provider = gtk_css_provider_new();
 
-    gtk_css_provider_load_from_path(provider, "Style.css");
+    gtk_css_provider_load_from_path(provider, "Style/Style.css");
 
     GdkDisplay* display = gdk_display_get_default();
 
@@ -180,7 +180,7 @@ static void crackFile(GtkButton* crack_button, gpointer* user_data) {
     }
 
     gtk_label_set_label(GTK_LABEL(main_label), STEP3);
-    // g_timeout_add_seconds(3, NULL, NULL); //TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // g_timeout_add_seconds(3, NULL, NULL); //TODO
 
     return;
 }
