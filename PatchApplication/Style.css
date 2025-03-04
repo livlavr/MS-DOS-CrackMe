@@ -1,0 +1,31 @@
+window {
+    background: #2d2d2d;
+    color: #ffffff;
+}
+
+button {
+    background: #c20404;
+    color: white;
+    border: #111;
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+entry {
+    font-family: 'JetBrains Mono';
+    font-size: 25px;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #770d0d;
+    border: #111;
+}
+
+label {
+    font-family: 'JetBrains Mono';
+    font-size: 40px;
+    font-weight: 900;
+    color: #ffffff;
+}
